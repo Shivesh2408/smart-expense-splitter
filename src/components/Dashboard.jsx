@@ -117,7 +117,7 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-4xl mx-auto p-4 py-8">
-      <header className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+      <header className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
             Dashboard
@@ -129,7 +129,7 @@ export default function Dashboard() {
             logout();
             toast.success('Logged out successfully');
           }}
-          className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-slate-800"
+          className="flex items-center justify-center w-full sm:w-auto gap-2 text-slate-400 hover:text-white transition-colors px-4 py-2 rounded-lg hover:bg-slate-800 border border-slate-700 sm:border-transparent"
         >
           <LogOut className="w-5 h-5" />
           <span className="inline">Sign Out</span>
@@ -228,7 +228,7 @@ export default function Dashboard() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-slate-800 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl"
+              className="bg-slate-800 border border-slate-700 rounded-2xl p-5 sm:p-6 w-full max-w-md shadow-2xl"
             >
               <h2 className="text-2xl font-bold text-white mb-6">Create Group</h2>
               <form onSubmit={handleCreateGroup}>
@@ -244,18 +244,18 @@ export default function Dashboard() {
                     placeholder="e.g. Goa Trip, Apartment Rent"
                   />
                 </div>
-                <div className="flex justify-end gap-3">
+                <div className="flex flex-col-reverse sm:flex-row justify-end gap-3">
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(false)}
-                    className="px-5 py-2.5 rounded-xl font-medium text-slate-300 hover:bg-slate-700 transition-colors"
+                    className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl font-medium text-slate-300 hover:bg-slate-700 transition-colors border border-slate-700 sm:border-transparent"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={creating}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 shadow-lg shadow-purple-500/20 disabled:opacity-50"
+                    className="w-full sm:w-auto justify-center flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 shadow-lg shadow-purple-500/20 disabled:opacity-50"
                   >
                     {creating && <Loader2 className="w-4 h-4 animate-spin" />}
                     {creating ? 'Creating...' : 'Create Group'}

@@ -218,14 +218,14 @@ export default function GroupDetail() {
 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
         <div>
-          <h1 className="text-4xl font-bold text-white mb-2">{group.name}</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{group.name}</h1>
           <p className="text-slate-400">{group.memberDetails.length} Members</p>
         </div>
         
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           <button 
             onClick={() => setShowAddMember(true)}
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-medium flex items-center gap-2 transition-colors border border-slate-700 hover:border-slate-600"
+            className="w-full sm:w-auto justify-center px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-medium flex items-center gap-2 transition-colors border border-slate-700 hover:border-slate-600"
           >
             <UserPlus className="w-4 h-4" /> Add Member
           </button>
@@ -236,7 +236,7 @@ export default function GroupDetail() {
               setSplitType('EQUAL');
               setSplitValues({});
             }}
-            className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white rounded-xl font-medium flex items-center gap-2 transition-all shadow-lg shadow-purple-500/20 transform hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full sm:w-auto justify-center px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white rounded-xl font-medium flex items-center gap-2 transition-all shadow-lg shadow-purple-500/20 transform hover:scale-[1.02] active:scale-[0.98]"
           >
             <PlusCircle className="w-4 h-4" /> Add Expense
           </button>
@@ -381,7 +381,7 @@ export default function GroupDetail() {
       <AnimatePresence>
         {showAddMember && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-slate-800 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-slate-800 border border-slate-700 rounded-2xl p-5 sm:p-6 w-full max-w-md shadow-2xl">
               <h2 className="text-2xl font-bold text-white mb-6">Add Member</h2>
               <form onSubmit={handleAddMember}>
                 <div className="space-y-4 mb-6">
@@ -394,9 +394,9 @@ export default function GroupDetail() {
                     <input type="email" required value={newMemberEmail} onChange={(e) => setNewMemberEmail(e.target.value)} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="alice@example.com" />
                   </div>
                 </div>
-                <div className="flex justify-end gap-3">
-                  <button type="button" onClick={() => setShowAddMember(false)} className="px-5 py-2.5 rounded-xl font-medium text-slate-300 hover:bg-slate-700 transition-colors">Cancel</button>
-                  <button type="submit" disabled={addingMember} className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 shadow-lg disabled:opacity-50">
+                <div className="flex flex-col-reverse sm:flex-row justify-end gap-3">
+                  <button type="button" onClick={() => setShowAddMember(false)} className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl font-medium text-slate-300 hover:bg-slate-700 transition-colors border border-slate-700 sm:border-transparent">Cancel</button>
+                  <button type="submit" disabled={addingMember} className="w-full sm:w-auto justify-center flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 shadow-lg disabled:opacity-50">
                     {addingMember && <Loader2 className="w-4 h-4 animate-spin" />} Add Member
                   </button>
                 </div>
@@ -407,7 +407,7 @@ export default function GroupDetail() {
 
         {showAddExpense && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto">
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-slate-800 border border-slate-700 rounded-2xl p-6 w-full max-w-lg shadow-2xl m-auto my-8">
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="bg-slate-800 border border-slate-700 rounded-2xl p-5 sm:p-6 w-full max-w-lg shadow-2xl m-auto my-4 sm:my-8">
               <h2 className="text-2xl font-bold text-white mb-6">Add Expense</h2>
               <form onSubmit={handleAddExpense}>
                 <div className="space-y-4 mb-6">
@@ -415,7 +415,7 @@ export default function GroupDetail() {
                     <label className="block text-sm font-medium text-slate-300 mb-2">Description</label>
                     <input type="text" required value={expenseDesc} onChange={(e) => setExpenseDesc(e.target.value)} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Dinner, Taxi, etc." />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-300 mb-2">Amount (₹)</label>
                       <input type="number" step="0.01" min="0.01" required value={expenseAmount} onChange={(e) => setExpenseAmount(e.target.value)} className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="0.00" />
@@ -440,7 +440,7 @@ export default function GroupDetail() {
                           key={type}
                           type="button"
                           onClick={() => { setSplitType(type); setSplitValues({}); }}
-                          className={`flex-1 py-2 text-xs font-semibold rounded-lg transition-colors ${splitType === type ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'}`}
+                          className={`flex-1 py-2 px-1 text-[10px] sm:text-xs font-semibold rounded-lg transition-colors truncate ${splitType === type ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white'}`}
                         >
                           {type}
                         </button>
@@ -486,9 +486,9 @@ export default function GroupDetail() {
                     )}
                   </div>
                 </div>
-                <div className="flex justify-end gap-3 pt-4 border-t border-slate-700">
-                  <button type="button" onClick={() => setShowAddExpense(false)} className="px-5 py-2.5 rounded-xl font-medium text-slate-300 hover:bg-slate-700 transition-colors">Cancel</button>
-                  <button type="submit" disabled={addingExpense || expenseSplitBetween.length === 0} className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 shadow-lg disabled:opacity-50">
+                <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4 border-t border-slate-700">
+                  <button type="button" onClick={() => setShowAddExpense(false)} className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl font-medium text-slate-300 hover:bg-slate-700 transition-colors border border-slate-700 sm:border-transparent">Cancel</button>
+                  <button type="submit" disabled={addingExpense || expenseSplitBetween.length === 0} className="w-full sm:w-auto justify-center flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 shadow-lg disabled:opacity-50">
                     {addingExpense && <Loader2 className="w-4 h-4 animate-spin" />} Save Expense
                   </button>
                 </div>
